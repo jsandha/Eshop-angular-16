@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "eshop-5bc95"
+  },
+  "targets": {
+    "eshop-5bc95": {
+      "hosting": {
+        "Eshop": [
+          "eshop-5bc95"
+        ]
+      }
+    }
+  }
+}
