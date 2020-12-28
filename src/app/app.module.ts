@@ -10,19 +10,32 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { environment } from 'src/environments/environment';
+import { ShoppingCartComponent } from './shopping/components/shopping-cart/shopping-cart.component';
+import { OrderSuccessComponent } from './shopping/components/order-success/order-success.component';
+import { ProductsComponent } from './shopping/components/products/products.component';
+import { MyOrdersComponent } from './shopping/components/my-orders/my-orders.component';
+import { AdminProductsComponent } from './admin/components/admin-products/admin-products.component';
+import { AdminOrdersComponent } from './admin/components/admin-orders/admin-orders.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+
+import { CoreModule } from './core/core.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ShoppingCartComponent,
+    OrderSuccessComponent,
+    ProductsComponent,
+    MyOrdersComponent,
+    AdminProductsComponent,
+    AdminOrdersComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAnalyticsModule,
-    AngularFirestoreModule,
-    AngularFireAuthModule
+    CoreModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
