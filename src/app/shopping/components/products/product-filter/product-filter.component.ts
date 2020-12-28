@@ -14,5 +14,4 @@ categories$;
   constructor(private categoryService: CategoryService) {
     this.categories$ = categoryService.getAll();
   }
-
 }

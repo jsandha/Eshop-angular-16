@@ -42,12 +42,11 @@ private populateProducts(){
      .subscribe(params => {
         this.category = params.get('category');
         this.applyFilter();
-
      });
 }
 private applyFilter(){
-        this.filteredProducts = (this.category) ?
-        this.products.filter(p => p.category === this.category) :
-        this.products;
+        this.filteredProducts = (this.category) ? this.products.filter(p => p.category.toLowerCase() === this.category.toLowerCase())
+        :this.products;
+        // console.log(this.filteredProducts)
   }
 }
