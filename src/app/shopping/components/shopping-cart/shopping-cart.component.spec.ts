@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShoppingCartComponent } from './shopping-cart.component';
 
@@ -6,12 +6,12 @@ describe('ShoppingCartComponent', () => {
   let component: ShoppingCartComponent;
   let fixture: ComponentFixture<ShoppingCartComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
       declarations: [ ShoppingCartComponent ]
     })
     .compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ShoppingCartComponent);
@@ -19,7 +19,7 @@ describe('ShoppingCartComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
 });

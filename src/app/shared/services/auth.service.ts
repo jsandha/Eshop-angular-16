@@ -16,7 +16,7 @@ constructor(
       private afAuth: AngularFireAuth,
       private route: ActivatedRoute,
       private userService: UserService) {
-    this.user$ = afAuth.authState;
+      this.user$ = afAuth.authState;
    }
 
 login(){
@@ -34,7 +34,7 @@ get appUser$(): Observable<AppUser>{
   return this.user$
   .pipe(
     switchMap(user => {
-      if (user) this.userService.get(user.uid); // this and next statement= if there is no user then there is no observable so error with swtichmap. so we retun observable of null
+      if (user) return this.userService.get(user.uid); // this and next statement= if there is no user then there is no observable so error with swtichmap. so we retun observable of null
        return of(null);
     }
       ))

@@ -8,5 +8,5 @@ export class CategoryService {
   constructor(private db: AngularFireDatabase) { }
 
   getAll(){
-    return this.db.list('/categories', ref =>ref.orderByChild('name'))} // <= it order the list alphabetically on recieving
+    return this.db.list('/categories', ref =>ref.orderByChild('name')).valueChanges()} // <= it order the list alphabetically on recieving
 }

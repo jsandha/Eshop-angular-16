@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OrderSuccessComponent } from './order-success.component';
 
@@ -6,12 +6,12 @@ describe('OrderSuccessComponent', () => {
   let component: OrderSuccessComponent;
   let fixture: ComponentFixture<OrderSuccessComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
       declarations: [ OrderSuccessComponent ]
     })
     .compileComponents();
-  });
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(OrderSuccessComponent);
@@ -19,7 +19,7 @@ describe('OrderSuccessComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
 });

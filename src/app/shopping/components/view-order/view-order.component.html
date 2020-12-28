@@ -1,0 +1,43 @@
+<div *ngIf="(order$ | async) as order">
+  <h1>Orders placed on {{order[0].$value}}</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th></th>
+      <th>Item</th>
+      <th>Quaitity</th>
+      <th>Per unit</th>
+      <th>cost</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of order[1]; index as i">
+        <td><img src="{{item.product.imageUrl}}"  style="border-radius: 50%" width="50"></td>
+        <td>{{item.product.title}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.product.price}}</td>
+        <td>${{item.totalPrice| number :'.2'}} </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td style="text-align: right;">Total</td>
+        <td style="border-top: 2px solid black;border-bottom: 2px solid black">${{order[3].$value}}</td>
+      </tr>
+
+  </tbody>
+  <h3>Shipping details</h3>
+        <p >
+          <span style="font-weight: 600;">{{order[2].name}},</span> <br>
+        {{order[2].addressLine1}},<br>
+        <span *ngIf="order[2].addressLine2">{{order[2].addressLine2}},</span>
+        {{order[2].city}},
+        {{order[2].state}} {{order[2].pinCode}}<br>
+        {{order[2].country}}<br>
+
+      </p>
+  </table>
+
+

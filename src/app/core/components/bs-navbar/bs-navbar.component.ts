@@ -25,6 +25,7 @@ export class BsNavbarComponent implements OnInit {
     this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
     this.cart$ = await this.cartService.getCart();
     }
+
     toggleOnScroll(){
       return true;
     }

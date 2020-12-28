@@ -1,16 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
-import { environment } from 'src/environments/environment';
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgModule } from '@angular/core';
+
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
 // import { DataTableModule } from 'angular-4-data-table';
 // import { CustomFormsModule } from 'ng2-validation';
 import { AuthGuardService as AuthGuard } from './../shared/services/auth-guard.service';
-
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
 import { AuthService } from './services/auth.service';
@@ -24,13 +21,10 @@ import { UserService } from './services/user.service';
   imports: [
     CommonModule,
     FormsModule,
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
     // CustomFormsModule,
     // DataTableModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAnalyticsModule,
-    AngularFirestoreModule,
-    AngularFireAuthModule,
-    // NgbModule.forRoot(),
   ],
   declarations: [
     ProductCardComponent,
@@ -41,11 +35,10 @@ import { UserService } from './services/user.service';
     ProductQuantityComponent,
     CommonModule,
     FormsModule,
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
     // CustomFormsModule,
     // DataTableModule,
-    // AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    // NgbModule.forRoot().ngModule,
   ],
   providers: [
     AuthService,

@@ -1,6 +1,7 @@
+import { Product } from './../models/product';
 import { Injectable } from '@angular/core';
-import { Product } from '../../shared/models/product';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProductService {
@@ -13,8 +14,8 @@ export class ProductService {
   get(productId){
     return this.db.object('/products/' + productId);
   }
-  getAll(): AngularFireList<Product[]>{
-    return this.db.list('/products');
+  getAll(){
+    return this.db.list('/products').valueChanges();
   }
   update(productId, product){
     return this.db.object('/products/' + productId).update(product);
