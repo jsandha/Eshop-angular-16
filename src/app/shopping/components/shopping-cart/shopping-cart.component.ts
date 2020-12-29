@@ -16,6 +16,6 @@ clearCart(){
 }
 
  async ngOnInit() {
-   this.cart$ = await this.cartService.getCart();
+   this.cart$ = await this.cartService.getCart()
   }
 }

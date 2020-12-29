@@ -47,6 +47,5 @@ private populateProducts(){
 private applyFilter(){
         this.filteredProducts = (this.category) ? this.products.filter(p => p.category.toLowerCase() === this.category.toLowerCase())
         :this.products;
-        // console.log(this.filteredProducts)
   }
 }
