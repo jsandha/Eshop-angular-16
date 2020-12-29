@@ -12,9 +12,10 @@ export class ShoppingCartService {
 
   constructor(private db: AngularFireDatabase) { }
 
-async getCart(): Promise<Observable<ShoppingCart>> {
+async getCart(){
     const cartId = await this.getOrCreateCartId();
-    return this.db.object('shopping-carts/' + cartId).valueChanges().pipe(map(cart => new ShoppingCart(cart['item'])))
+   return this.db.object('shopping-carts/' + cartId).valueChanges().pipe(map(cart => new ShoppingCart(cart['item'])))
+
   }
 
 async addToCart(product: Product){
