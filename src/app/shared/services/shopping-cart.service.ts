@@ -2,7 +2,6 @@
 import { ShoppingCart } from '../../shared/models/shopping-cart';
 import { Injectable } from '@angular/core';
 import { Product } from '../../shared/models/product';
-import { Observable } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { map, take } from 'rxjs/operators';
 
