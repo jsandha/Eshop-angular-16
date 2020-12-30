@@ -22,14 +22,11 @@ cart$: Observable<ShoppingCart>;
   constructor(
           private productService: ProductService,
           private route: ActivatedRoute,
-          private cartService: ShoppingCartService) {
+          private cartService: ShoppingCartService) {}
 
-
-    }
 async ngOnInit(){
    this.cart$ = await this.cartService.getCart();
    this.populateProducts();
-
 }
 
 private populateProducts(){
