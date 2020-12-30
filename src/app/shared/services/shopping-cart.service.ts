@@ -13,7 +13,7 @@ export class ShoppingCartService {
 
 async getCart(){
     const cartId = await this.getOrCreateCartId();
-   return this.db.object('shopping-carts/' + cartId).valueChanges().pipe(map(cart => new ShoppingCart(cart['items'])))
+   return this.db.object('/shopping-carts/' + cartId).valueChanges().pipe(map(cart => new ShoppingCart(cart['items'])))
 
   }
 
