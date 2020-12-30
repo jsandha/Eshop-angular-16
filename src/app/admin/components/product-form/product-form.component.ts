@@ -20,7 +20,7 @@ id;
     this.categories$ = categoryService.getAll(); //initialised category$ to the categories got from categoryervice that got from firebase
 
   this.id = route.snapshot.paramMap.get('id');
-   if (this.id) this.productService.get(this.id).valueChanges().pipe(take(1)).subscribe(p => this.product = p);
+   if (this.id) this.productService.get(this.id).pipe(take(1)).subscribe(p => this.product = p);
   }
 save(product){
     if (this.id) this.productService.update(this.id, product);
