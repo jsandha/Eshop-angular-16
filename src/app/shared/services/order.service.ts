@@ -1,6 +1,8 @@
 import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class OrderService {
@@ -13,8 +15,9 @@ export class OrderService {
     return result;
   }
 
-  getOrders() {
-    return this.db.list('/orders').valueChanges();
+  getOrders(): Observable<any[]>{
+    const itemRef: AngularFireList<any> = this.db.list('/orders');
+    return itemRef.snapshotChanges().pipe(map(changes => changes.map(c => ({$key:c.payload.key, ...c.payload.val()}))))
   }
 
   getOrdersByUser(userId: string) {

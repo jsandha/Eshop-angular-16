@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppUser } from 'src/app/shared/models/app-user';
@@ -23,7 +24,7 @@ export class BsNavbarComponent implements OnInit {
 
   async ngOnInit(){
     this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
-    this.cart$ = await this.cartService.getCart();
+    this.cart$ = await this.cartService.getCart()
     }
 
     toggleOnScroll(){

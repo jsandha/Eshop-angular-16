@@ -1,5 +1,8 @@
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Component } from '@angular/core';
 import { OrderService } from 'src/app/shared/services/order.service';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-admin-orders',
@@ -9,9 +12,13 @@ import { OrderService } from 'src/app/shared/services/order.service';
 export class AdminOrdersComponent{
   orders$;
 
-  constructor(private orderService: OrderService) {
-    this.orders$ = orderService.getOrders();
+  constructor(private orderService: OrderService,
+    private db: AngularFireDatabase
+    ) {
+   this.orders$=  this.orderService.getOrders()
   }
+
+
   deleteOrder(orderId){
     let toDelete = confirm("Do you really want to delete this order?");
 

@@ -1,3 +1,4 @@
+import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,11 +9,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class OrderSuccessComponent implements OnInit {
   orderId;
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+    private cartService: ShoppingCartService) { }
 
   ngOnInit() {
     this.orderId = this.route.url["_value"][1].path
-    console.log(this.orderId)
+    //delete cart from firebase
+
+    // set new cartId
   }
 
 }

@@ -1,4 +1,4 @@
-<div *ngIf="(order$ | async) as order">
+<div *ngIf="order$ | async as order">
   <h1>Orders placed on {{order[0].$value}}</h1>
   <table class="table">
     <thead>
@@ -24,7 +24,7 @@
         <td></td>
         <td></td>
         <td style="text-align: right;">Total</td>
-        <td style="border-top: 2px solid black;border-bottom: 2px solid black">${{order[3].$value}}</td>
+        <td style="border-top: 2px solid black;border-bottom: 2px solid black">${{order[3] |number :'.2'}}</td>
       </tr>
 
   </tbody>

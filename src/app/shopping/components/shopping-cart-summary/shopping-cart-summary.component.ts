@@ -1,3 +1,4 @@
+import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
 import { Component, Input } from '@angular/core';
 import { ShoppingCart } from 'src/app/shared/models/shopping-cart';
 
@@ -8,5 +9,4 @@ import { ShoppingCart } from 'src/app/shared/models/shopping-cart';
 })
 export class ShoppingCartSummaryComponent {
 @Input('cart') cart: ShoppingCart;
-
 }

@@ -1,5 +1,8 @@
+import { Observable } from 'rxjs';
 import { Component  } from '@angular/core';
 import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
+import { ShoppingCart } from 'src/app/shared/models/shopping-cart';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -7,8 +10,7 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.servi
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent {
-cart$;
-
+cart$
   constructor(private cartService: ShoppingCartService) { }
 
 clearCart(){

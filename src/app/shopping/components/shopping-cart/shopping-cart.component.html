@@ -3,7 +3,7 @@
   <p>
   You have {{cart["totalItemsCount"]}} items in your shopping cart.
   <button
-  *ngIf="cart.items.length"
+  *ngIf="cart['items'].length"
   (click)="clearCart()"
   class="btn btn-sm btn-outline-info">Clear Shopping Cart</button>
 </p>
@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of cart.items">
+    <tr *ngFor="let item of cart['items']">
       <td>
         <div [style.backgroundImage]="'url(' + item.imageUrl + ')'" class="thumbnail" alt=""></div>
       </td>
@@ -39,11 +39,11 @@
       <th></th>
       <th></th>
       <th></th>
-      <th class=" text-right">{{ cart.totalPrice | currency: 'USD': 'symbol'}}</th>
+      <th class=" text-right">{{ cart['totalPrice'] | currency: 'USD': 'symbol'}}</th>
     </tr>
   </tfoot>
 </table>
-<a *ngIf="cart.items.length"
+<a *ngIf="cart['items'].length"
 class="btn btn-primary"
 routerLink="/check-out"
 >Check-Out</a>

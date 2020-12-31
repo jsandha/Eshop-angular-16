@@ -1,11 +1,11 @@
+import { AppUser } from './../models/app-user';
 import { switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UserService } from './user.service';
-import { AppUser } from '../models/app-user';
 
 @Injectable()
 export class AuthService {

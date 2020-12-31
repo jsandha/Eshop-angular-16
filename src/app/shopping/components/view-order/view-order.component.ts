@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { OrderService } from 'src/app/shared/services/order.service';
 
 @Component({
-  selector: 'app-view-order',
+  selector: 'view-order',
   templateUrl: './view-order.component.html',
   styleUrls: ['./view-order.component.css']
 })
@@ -21,7 +21,7 @@ order$;
   ngOnInit() {
     if(this.route.url["_value"][2].path){
       this.orderId = this.route.url["_value"][2].path
-      this.order$ = this.getOrdersByUser(this.orderId);
+      this.order$ = this.getOrdersByUser(this.orderId).valueChanges();
   }}
 
   getOrdersByUser(orderId: string) {

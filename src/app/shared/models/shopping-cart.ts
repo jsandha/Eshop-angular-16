@@ -5,12 +5,11 @@ export class ShoppingCart {
  items: ShoppingCartItem[] = [];
 
 constructor(private itemsMap: {[productId: string]: ShoppingCartItem}){
-    this. itemsMap = itemsMap || {};
+    this.itemsMap = itemsMap || {}; // initialize item map with empty object or with itemsmap
 
     for (const productId in itemsMap){
-    const item = itemsMap[productId];
-
-    this.items.push(new ShoppingCartItem({...item, $key: productId}));
+    const item = itemsMap[productId];// itterate over items
+    this.items.push(new ShoppingCartItem({...item, $key: productId}));// it pushes item in the array and adds the productid as $key
     }
 }
 
