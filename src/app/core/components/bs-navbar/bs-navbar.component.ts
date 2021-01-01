@@ -1,8 +1,9 @@
-
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { AppUser } from 'src/app/shared/models/app-user';
 import { ShoppingCart } from 'src/app/shared/models/shopping-cart';
+import { Observable } from 'rxjs';
+
+import {  Component,  OnInit } from '@angular/core';
+
+import { AppUser } from 'src/app/shared/models/app-user';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
 
@@ -11,10 +12,10 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.servi
   templateUrl: './bs-navbar.component.html',
   styleUrls: ['./bs-navbar.component.scss']
 })
+
 export class BsNavbarComponent implements OnInit {
   appUser: AppUser;
-  cart$: Observable<ShoppingCart>;
-
+  cart$: Observable<ShoppingCart>
   constructor(private auth: AuthService,
     private cartService: ShoppingCartService){}
 

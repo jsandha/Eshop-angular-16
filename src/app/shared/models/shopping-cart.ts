@@ -38,4 +38,5 @@ get totalItemsCount(){
         sum += this.items[productId].totalPrice;
     return sum;
     }
+
 }

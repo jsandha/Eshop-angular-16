@@ -1,5 +1,4 @@
-
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -41,6 +40,7 @@ private populateProducts(){
         this.applyFilter();
      });
 }
+
 private applyFilter(){
         this.filteredProducts = (this.category) ? this.products.filter(p => p.category.toLowerCase() === this.category.toLowerCase())
         :this.products;
