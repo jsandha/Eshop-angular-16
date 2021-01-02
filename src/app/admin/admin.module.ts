@@ -6,9 +6,11 @@ import { SharedModule } from './../shared/shared.module';
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from './components/admin-products/admin-products.component';
 import { AdminAuthGuardService as AdminAuthGuard } from './services/admin-auth-guard.service';
+import { DataTablesModule } from 'angular-datatables';
 @NgModule({
   imports: [
     SharedModule,
+    DataTablesModule,
     RouterModule.forChild([
 
       { path: 'admin/products/new',
