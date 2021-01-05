@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component  } from '@angular/core';
 import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
 @Component({
@@ -7,7 +8,9 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.servi
 })
 export class ShoppingCartComponent {
 cart$
-constructor(private cartService: ShoppingCartService) { }
+orderId;
+constructor(private cartService: ShoppingCartService,
+  private route: ActivatedRoute) { }
 
 clearCart(){
   this.cartService.clearCart();

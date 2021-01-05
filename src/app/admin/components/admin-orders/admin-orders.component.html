@@ -14,7 +14,7 @@
       <td>{{order.$key}}</td>
       <td>{{ order.shipping.name }}</td>
       <td>{{ order.datePlaced | date}}</td>
-      <td><a routerLink="/my/orders/{{order.$key}}">View</a></td>
+      <td><a routerLink="{{order.$key}}">View</a></td>
       <td><button class="btn btn-danger" (click) = "deleteOrder(order.$key)" type="button" data-confirm="Are you sure you want to delete?">Delete</button></td>
     </tr>
   </tbody>

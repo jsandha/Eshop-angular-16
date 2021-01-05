@@ -2,14 +2,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../shared/services/product.service';
 import { CategoryService } from '../../../shared/services/category.service';
 import { Component } from '@angular/core';
-import { take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 @Component({
   selector: ' product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent {
-categories$;
+categories$ = [];
 product: any= {};
 id;
   constructor(
@@ -17,10 +17,10 @@ id;
     private router: Router,
     private categoryService: CategoryService,
     private productService: ProductService) {
-    this.categories$ = categoryService.getAll(); //initialised category$ to the categories got from categoryervice that got from firebase
-
+    this.categoryService.getAll().subscribe(x=> x.forEach( y=> this.categories$.push(y['name'].toLowerCase())) //initialised category$ to the categories got from categoryervice that got from firebase
+,map(cat=> this.categories$.push(cat)))
   this.id = route.snapshot.paramMap.get('id');
-   if (this.id) this.productService.get(this.id).pipe(take(1)).subscribe(p => this.product = p);
+   if (this.id) this.productService.get(this.id).pipe(take(1)).subscribe(p => {this.product = p});
   }
 save(product){
     if (this.id) this.productService.update(this.id, product);

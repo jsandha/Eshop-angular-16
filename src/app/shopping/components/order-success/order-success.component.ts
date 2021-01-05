@@ -9,14 +9,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class OrderSuccessComponent implements OnInit {
   orderId;
-  constructor(private route: ActivatedRoute,
-    private cartService: ShoppingCartService) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.orderId = this.route.url["_value"][1].path
-    //delete cart from firebase
-
-    // set new cartId
+    this.orderId = this.route.snapshot.params.id
   }
 
 }

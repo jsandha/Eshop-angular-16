@@ -1,3 +1,4 @@
+import { ProductQuantityComponent } from './../shared/components/product-quantity/product-quantity.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -9,7 +10,6 @@ import { OrderSuccessComponent } from './components/order-success/order-success.
 import { ProductFilterComponent } from './components/products/product-filter/product-filter.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ShippingFormComponent } from './components/shipping-form/shipping-form.component';
-import { ShoppingCartSummaryComponent } from './components/shopping-cart-summary/shopping-cart-summary.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ViewOrderComponent } from './components/view-order/view-order.component';
 
@@ -19,7 +19,6 @@ import { ViewOrderComponent } from './components/view-order/view-order.component
     RouterModule.forChild([
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
-
 
       { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
       { path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard] },
@@ -34,7 +33,6 @@ import { ViewOrderComponent } from './components/view-order/view-order.component
     OrderSuccessComponent,
     MyOrdersComponent,
     ProductFilterComponent,
-    ShoppingCartSummaryComponent,
     ShippingFormComponent,
     ViewOrderComponent
   ]

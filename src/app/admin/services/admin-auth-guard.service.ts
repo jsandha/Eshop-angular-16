@@ -11,8 +11,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class AdminAuthGuardService {
 
   constructor(
-    private auth: AuthService,
-    private userService: UserService
+    private auth: AuthService
     ) { }
 
 canActivate(): Observable<boolean>{

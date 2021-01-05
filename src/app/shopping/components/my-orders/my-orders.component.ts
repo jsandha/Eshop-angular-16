@@ -11,9 +11,7 @@ export class MyOrdersComponent {
   orders$;
 
   constructor(
-    private authService: AuthService,
     private orderService: OrderService,) {
-
       this.orders$=  this.orderService.getOrders()
   }
 

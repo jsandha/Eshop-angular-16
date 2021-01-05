@@ -12,9 +12,7 @@ import { Observable } from 'rxjs';
 export class AdminOrdersComponent{
   orders$;
 
-  constructor(private orderService: OrderService,
-    private db: AngularFireDatabase
-    ) {
+  constructor(private orderService: OrderService,) {
    this.orders$=  this.orderService.getOrders()
   }
 

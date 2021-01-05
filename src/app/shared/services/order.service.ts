@@ -19,7 +19,9 @@ export class OrderService {
     const itemRef: AngularFireList<any> = this.db.list('/orders');
     return itemRef.snapshotChanges().pipe(map(changes => changes.map(c => ({$key:c.payload.key, ...c.payload.val()}))))
   }
-
+  getOrder(orderId){
+    return this.db.object('/orders/' + orderId)
+  }
   getOrdersByUser(userId: string) {
     return this.db.list('/orders', ref => ref.orderByChild('userId').equalTo(userId))
   }
