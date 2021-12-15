@@ -5,8 +5,6 @@ import { NgModule } from '@angular/core';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
-// import { DataTableModule } from 'angular-4-data-table';
-// import { CustomFormsModule } from 'ng2-validation';
 import { AuthGuardService as AuthGuard } from './../shared/services/auth-guard.service';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ProductQuantityComponent } from './components/product-quantity/product-quantity.component';
@@ -37,8 +35,6 @@ import { UserService } from './services/user.service';
     FormsModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule
-    // CustomFormsModule,
-    // DataTableModule,
   ],
   providers: [
     AuthService,

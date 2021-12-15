@@ -10,13 +10,16 @@ export class ShoppingCartComponent {
 cart$
 orderId;
 constructor(private cartService: ShoppingCartService,
-  private route: ActivatedRoute) { }
+  private route: ActivatedRoute) {}
 
 clearCart(){
   this.cartService.clearCart();
 }
 
 async ngOnInit() {
+   this.orderId = this.route.snapshot.queryParams.orderId
+  if(!this.orderId)
   this.cart$ = await this.cartService.getCart();
+  else this.cart$ = await this.cartService.getOrderCart(this.orderId)
 }
 }

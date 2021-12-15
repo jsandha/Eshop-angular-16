@@ -13,6 +13,7 @@ export class Order {
                 title: i.title,
                 imageUrl: i.imageUrl,
                 price: i.price,
+                productId: i.$key
 
               },
               quantity: i.quantity,
