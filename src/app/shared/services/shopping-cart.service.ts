@@ -1,9 +1,9 @@
+import { Product } from './../models/product';
 import { ShoppingCart } from 'src/app/shared/models/shopping-cart';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
-import { map, take} from 'rxjs/operators';
+import { map, mapTo, pluck, take} from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Product } from '../models/product';
 @Injectable()
 export class ShoppingCartService {
   quantity: number;
@@ -49,6 +49,36 @@ async getCart(): Promise<Observable<ShoppingCart>>{
    return this.db.list('shopping-cart/' + cartId).valueChanges().pipe(
    map(cart => new ShoppingCart(cart['1'])))
   }
+
+// yet to do.. have to return the object new shoppingcart
+async getOrderCart(id){
+  this.db.list('orders/' + id).valueChanges().pipe(
+    take(1),
+    pluck('1'),
+    map(x=> console.log(x['product']))
+
+    // map(x=>  new ShoppingCart[x])
+    ).subscribe(x=> console.log(x))
+    // map(cart => { cart['1'].forEach(el => {
+    //           (el.product).reduce((acc,obj)=> {
+    //             // acc[obj] = obj
+    //             return acc
+    //           })
+    // });
+
+    //  .forEach(el => {
+    //    el.reduce((acc,obj)=>  {
+    //       acc[obj.product.productId] = obj.product
+    //     return acc
+    //   })
+    //  });
+    // })
+  // .subscribe(x=>console.log(x))
+
+      // map(cart => new ShoppingCart(cart['1'])))
+// update the cart and the objects related to it
+    // updateItems()
+}
 
 async addToCart(product: Product){
     this.updateItem(product, 1);
