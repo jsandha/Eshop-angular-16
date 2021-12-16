@@ -1,3 +1,10 @@
 {
-  "cSpell.words": ["Firestore", "localstorage", "shoppingcart", "switchmap"]
+  "cSpell.words": [
+    "Firestore",
+    "itemsmap",
+    "localstorage",
+    "productid",
+    "shoppingcart",
+    "switchmap"
+  ]
 }
