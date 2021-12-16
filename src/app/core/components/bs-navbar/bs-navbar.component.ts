@@ -1,7 +1,7 @@
 import { ShoppingCart } from 'src/app/shared/models/shopping-cart';
 import { Observable } from 'rxjs';
 
-import {  Component,  OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { AppUser } from 'src/app/shared/models/app-user';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -10,25 +10,26 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.servi
 @Component({
   selector: 'bs-navbar',
   templateUrl: './bs-navbar.component.html',
-  styleUrls: ['./bs-navbar.component.scss']
+  styleUrls: ['./bs-navbar.component.scss'],
 })
-
 export class BsNavbarComponent implements OnInit {
   appUser: AppUser;
-  cart$: Observable<ShoppingCart>
-  constructor(private auth: AuthService,
-    private cartService: ShoppingCartService){}
+  cart$: Observable<ShoppingCart>;
+  constructor(
+    private auth: AuthService,
+    private cartService: ShoppingCartService
+  ) {}
 
-  logout(){
-      this.auth.logout();
-    }
+  logout() {
+    this.auth.logout();
+  }
 
-  async ngOnInit(){
-    this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
-    this.cart$ = await this.cartService.getCart()
-    }
+  async ngOnInit() {
+    this.auth.appUser$.subscribe((appUser) => (this.appUser = appUser));
+    this.cart$ = await this.cartService.getCart();
+  }
 
-    toggleOnScroll(){
-      return true;
-    }
+  toggleOnScroll() {
+    return true;
+  }
 }

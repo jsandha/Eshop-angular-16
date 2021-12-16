@@ -2,8 +2,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+// import { AngularFireAuthModule } from '@angular/fire/auth';
+// import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { AuthGuardService as AuthGuard } from './../shared/services/auth-guard.service';
 import { ProductCardComponent } from './components/product-card/product-card.component';
@@ -19,22 +21,23 @@ import { UserService } from './services/user.service';
   imports: [
     CommonModule,
     FormsModule,
-    AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireAnalyticsModule,
+    AngularFirestoreModule,
+    // AngularFireAuthModule,
+    // AngularFireDatabaseModule,
     // CustomFormsModule,
     // DataTableModule,
   ],
-  declarations: [
-    ProductCardComponent,
-    ProductQuantityComponent,
-  ],
+  declarations: [ProductCardComponent, ProductQuantityComponent],
   exports: [
     ProductCardComponent,
     ProductQuantityComponent,
     CommonModule,
     FormsModule,
-    AngularFireAuthModule,
-    AngularFireDatabaseModule
+    // AngularFireAuthModule,
+    // AngularFireDatabaseModule,
+    AngularFireAnalyticsModule,
+    AngularFirestoreModule,
   ],
   providers: [
     AuthService,
@@ -44,6 +47,6 @@ import { UserService } from './services/user.service';
     ProductService,
     ShoppingCartService,
     OrderService,
-  ]
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

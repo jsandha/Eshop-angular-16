@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
-import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -12,9 +12,7 @@ import { ShoppingModule } from './shopping/shopping.module';
 import { AdminAuthGuardService as AdminAuthGuard } from './admin/services/admin-auth-guard.service';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     SharedModule,
@@ -25,9 +23,7 @@ import { AdminAuthGuardService as AdminAuthGuard } from './admin/services/admin-
 
     AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [
-    AdminAuthGuard
-  ],
-  bootstrap: [AppComponent]
+  providers: [AdminAuthGuard],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

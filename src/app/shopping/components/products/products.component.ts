@@ -10,39 +10,45 @@ import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.servi
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
 })
-export class ProductsComponent implements OnInit{
-products: Product[] = [];
-filteredProducts: Product[] = [];
-category: string;
-cart$: Observable<ShoppingCart>;
+export class ProductsComponent implements OnInit {
+  products: Product[] = [];
+  filteredProducts: Product[] = [];
+  category: string;
+  cart$: Observable<ShoppingCart>;
 
   constructor(
-          private productService: ProductService,
-          private route: ActivatedRoute,
-          private cartService: ShoppingCartService) {}
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private cartService: ShoppingCartService
+  ) {}
 
-async ngOnInit(){
-   this.cart$ = await this.cartService.getCart();
-   this.populateProducts();
-}
+  async ngOnInit() {
+    this.cart$ = await this.cartService.getCart();
+    this.populateProducts();
+  }
 
-private populateProducts(){
-   this.productService
-     .getAll().pipe(
-     switchMap((products: Product[] )=> {
-       this.products = products;
-       return this.route.queryParamMap;
-      }))
-     .subscribe(params => {
+  private populateProducts() {
+    this.productService
+      .getAll()
+      .pipe(
+        switchMap((products: Product[]) => {
+          this.products = products;
+          return this.route.queryParamMap;
+        })
+      )
+      .subscribe((params) => {
         this.category = params.get('category');
         this.applyFilter();
-     });
-}
+      });
+  }
 
-private applyFilter(){
-        this.filteredProducts = (this.category) ? this.products.filter(p => p.category.toLowerCase() === this.category.toLowerCase())
-        :this.products;
+  private applyFilter() {
+    this.filteredProducts = this.category
+      ? this.products.filter(
+          (p) => p.category.toLowerCase() === this.category.toLowerCase()
+        )
+      : this.products;
   }
 }
