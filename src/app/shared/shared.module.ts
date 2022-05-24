@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 // import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -23,6 +23,7 @@ import { UserService } from './services/user.service';
     FormsModule,
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
+    ReactiveFormsModule,
     // AngularFireAuthModule,
     // AngularFireDatabaseModule,
     // CustomFormsModule,
@@ -38,6 +39,7 @@ import { UserService } from './services/user.service';
     // AngularFireDatabaseModule,
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
+    ReactiveFormsModule,
   ],
   providers: [
     AuthService,

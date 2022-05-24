@@ -6,10 +6,16 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { UserService } from './user.service';
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from 'firebase/auth';
 
 @Injectable()
 export class AuthService {
-  user$!: Observable<firebase.User>;
+  user$: Observable<firebase.User>;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -19,6 +25,48 @@ export class AuthService {
     this.user$ = afAuth.authState;
   }
 
+  currentUser() {
+    if (firebase.auth().currentUser) {
+      localStorage.setItem('email', firebase.auth().currentUser.email);
+      return firebase.auth().currentUser;
+    } else return false;
+  }
+
+  signIn(username, password) {
+    const auth = getAuth();
+    return signInWithEmailAndPassword(auth, username, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  }
+  signUp(name, username, password) {
+    const auth = getAuth();
+    const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'; // it copy the url on the address bar
+
+    // stores url in localstorage
+    localStorage.setItem('returnUrl', returnUrl);
+    return createUserWithEmailAndPassword(auth, username, password)
+      .then((userCredential) => {
+        // Signed in
+        updateProfile(auth.currentUser, { displayName: name });
+        let user = userCredential.user;
+        user;
+        // ...
+      })
+      .catch((error) => {
+        return new Error(error);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  }
   login() {
     const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'; // it copy the url on the address bar
     localStorage.setItem('returnUrl', returnUrl); // stores url in localstorage
