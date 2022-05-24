@@ -9,7 +9,7 @@ import { UserService } from './user.service';
 
 @Injectable()
 export class AuthService {
-  user$: Observable<firebase.User>;
+  user$!: Observable<firebase.User>;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -31,6 +31,7 @@ export class AuthService {
   }
 
   get appUser$(): Observable<AppUser> {
+    //return of(null);
     return this.user$.pipe(
       switchMap((user) => {
         if (user) return this.userService.get(user.uid); // this and next statement= if there is no user then there is no observable so error with switchmap. so we return observable of null
