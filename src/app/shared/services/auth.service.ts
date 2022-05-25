@@ -12,15 +12,16 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Injectable()
 export class AuthService {
-  user$: Observable<firebase.User>;
-
+  user$!: Observable<firebase.User>;
   constructor(
     private afAuth: AngularFireAuth,
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private db: AngularFireDatabase
   ) {
     this.user$ = afAuth.authState;
   }
@@ -55,9 +56,14 @@ export class AuthService {
     return createUserWithEmailAndPassword(auth, username, password)
       .then((userCredential) => {
         // Signed in
-        updateProfile(auth.currentUser, { displayName: name });
+        // if we just wanT TO ADD name =>> updateProfile(auth.currentUser, { displayName: name });
+
+        // if more information needs to be added then follow below steps
+        this.db
+          .object('/users/' + userCredential.user.uid)
+          .update({ displayName: name, isAdmin: false });
         let user = userCredential.user;
-        user;
+        return user;
         // ...
       })
       .catch((error) => {
@@ -78,7 +84,7 @@ export class AuthService {
     this.afAuth.signOut();
   }
 
-  get appUser$(): Observable<AppUser> {
+  get appUser$() {
     //return of(null);
     return this.user$.pipe(
       switchMap((user) => {

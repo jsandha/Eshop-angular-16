@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DataTableDirective } from 'angular-datatables';
+
 import { Subject, Subscription } from 'rxjs';
 import { Product } from 'src/app/shared/models/product';
 import { ProductService } from 'src/app/shared/services/product.service';

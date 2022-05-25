@@ -9,7 +9,10 @@ import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
-  imports: [SharedModule, RouterModule.forChild([])],
+  imports: [
+    SharedModule,
+    RouterModule.forChild([{ path: 'signup', component: SignUpComponent }]),
+  ],
   declarations: [
     BsNavbarComponent,
     HomeComponent,

@@ -6,6 +6,7 @@ import {
 } from '@angular/fire/compat/database';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { getAuth } from 'firebase/auth';
 
 @Injectable()
 export class OrderService {
@@ -20,7 +21,7 @@ export class OrderService {
     return result;
   }
 
-  getOrders(): Observable<any[]> {
+  getAllOrders(): Observable<any[]> {
     const itemRef: AngularFireList<any> = this.db.list('/orders');
     return itemRef
       .snapshotChanges()
@@ -33,10 +34,21 @@ export class OrderService {
   getOrder(orderId) {
     return this.db.object('/orders/' + orderId);
   }
-  getOrdersByUser(userId: string) {
-    return this.db.list('/orders', (ref) =>
-      ref.orderByChild('userId').equalTo(userId)
+
+  getOrdersByUser(): Observable<any[]> {
+    const itemRef: AngularFireList<any> = this.db.list('/orders', (ref) =>
+      ref.orderByChild('userId').equalTo(this.userId)
     );
+    return itemRef
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({ $key: c.payload.key, ...c.payload.val() }))
+        )
+      );
+  }
+  get userId() {
+    return getAuth().currentUser.uid;
   }
 
   deleteOrder(orderId) {

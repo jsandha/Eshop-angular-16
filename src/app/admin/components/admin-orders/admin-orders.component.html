@@ -1,21 +1,37 @@
 <h1>Manage Orders</h1>
-<table class="table">
+<table
+  datatable
+  [dtOptions]="dtOptions"
+  [dtTrigger]="dtTrigger"
+  class="row-border hover"
+>
   <thead>
     <tr>
+      <th>Number</th>
       <th>Order Id</th>
       <th>Customer</th>
-      <th>Date</th>
+      <th>Order Date</th>
       <th></th>
       <th></th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let order of orders$ | async">
-      <td>{{order.$key}}</td>
+    <tr *ngFor="let order of orders$; index as i">
+      <td>{{ i + 1 }}</td>
+      <td>{{ order.$key }}</td>
       <td>{{ order.shipping.name }}</td>
-      <td>{{ order.datePlaced | date}}</td>
-      <td><a routerLink="{{order.$key}}">View</a></td>
-      <td><button class="btn btn-danger" (click) = "deleteOrder(order.$key)" type="button" data-confirm="Are you sure you want to delete?">Delete</button></td>
+      <td>{{ order.datePlaced | date }}</td>
+      <td><a routerLink="{{ order.$key }}">View</a></td>
+      <td>
+        <button
+          class="btn btn-danger"
+          (click)="deleteOrder(order.$key)"
+          type="button"
+          data-confirm="Are you sure you want to delete?"
+        >
+          Delete
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
