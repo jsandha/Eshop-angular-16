@@ -1,16 +1,17 @@
-import { AdminAuthGuardService as AdminAuthGuard } from './services/admin-auth-guard.service';
-import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
-import { AdminProductsComponent } from './components/admin-products/admin-products.component';
-import { AuthGuardService as AuthGuard } from '../shared/services/auth-guard.service';
 import { EditOrdersComponent } from './components/edit-orders/edit-orders.component';
 import { NgModule } from '@angular/core';
-import { ProductFormComponent } from '../admin/components/product-form/product-form.component';
 import { RouterModule } from '@angular/router';
+import { AuthGuardService as AuthGuard } from '../shared/services/auth-guard.service';
+import { ProductFormComponent } from '../admin/components/product-form/product-form.component';
 import { SharedModule } from './../shared/shared.module';
-
+import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
+import { AdminProductsComponent } from './components/admin-products/admin-products.component';
+import { AdminAuthGuardService as AdminAuthGuard } from './services/admin-auth-guard.service';
+import { DataTablesModule } from 'angular-datatables';
 @NgModule({
   imports: [
     SharedModule,
+    DataTablesModule,
     RouterModule.forChild([
       {
         path: 'admin/products/new',
