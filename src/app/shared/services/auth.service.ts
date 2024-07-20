@@ -4,7 +4,6 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   signInWithPopup,
-  updateProfile,
 } from 'firebase/auth';
 
 import { ActivatedRoute } from '@angular/router';
@@ -42,6 +41,9 @@ export class AuthService {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        const returnUrl =
+          this.route.snapshot.queryParamMap.get('returnUrl') || '/'; // it copy the url on the address bar
+        localStorage.setItem('returnUrl', returnUrl); // stores url in localstorage
         // ...
       })
       .catch((error) => {
@@ -71,8 +73,6 @@ export class AuthService {
       })
       .catch((error) => {
         return new Error(error);
-        const errorCode = error.code;
-        const errorMessage = error.message;
         // ..
       });
   }
