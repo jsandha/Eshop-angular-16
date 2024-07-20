@@ -2,7 +2,12 @@
   <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
 </p>
 
-<table>
+<table
+  datatable
+  [dtOptions]="dtOptions"
+  [dtTrigger]="dtTrigger"
+  class="row-border hover"
+>
   <thead>
     <tr>
       <th>Number</th>

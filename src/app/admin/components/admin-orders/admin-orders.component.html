@@ -1,5 +1,10 @@
 <h1>Manage Orders</h1>
-<table>
+<table
+  datatable
+  [dtOptions]="dtOptions"
+  [dtTrigger]="dtTrigger"
+  class="row-border hover"
+>
   <thead>
     <tr>
       <th>Number</th>
