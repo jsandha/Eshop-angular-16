@@ -8,14 +8,11 @@ import { Subject, Subscription } from 'rxjs';
 })
 export class AdminOrdersComponent {
   orders$;
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject<any>();
   subscription: Subscription;
 
   constructor(private orderService: OrderService) {
     this.subscription = this.orderService.getAllOrders().subscribe((x) => {
       this.orders$ = x;
-      this.dtTrigger.next();
     });
   }
 
