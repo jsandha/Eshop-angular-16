@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Eshop:build"
+            "buildTarget": "Eshop:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Eshop:build:production"
+              "buildTarget": "Eshop:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Eshop:build"
+            "buildTarget": "Eshop:build"
           }
         },
         "test": {
