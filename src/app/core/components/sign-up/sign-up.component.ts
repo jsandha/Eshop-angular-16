@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 @Component({
@@ -14,11 +14,11 @@ export class SignUpComponent {
     private route: ActivatedRoute
   ) {}
   idExists = false;
-  form = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.maxLength(32)]),
-    username: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required),
-    remember: new FormControl(),
+  form = new UntypedFormGroup({
+    name: new UntypedFormControl('', [Validators.required, Validators.maxLength(32)]),
+    username: new UntypedFormControl('', [Validators.required, Validators.email]),
+    password: new UntypedFormControl('', Validators.required),
+    remember: new UntypedFormControl(),
   });
   get username() {
     return this.form.get('username');

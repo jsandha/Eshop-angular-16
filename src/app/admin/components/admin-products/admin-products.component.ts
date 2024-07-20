@@ -10,15 +10,12 @@ import { ProductService } from 'src/app/shared/services/product.service';
   styleUrls: ['./admin-products.component.scss'],
 })
 export class AdminProductsComponent {
-  dtOptions: DataTables.Settings = {};
   products: Product[];
   subscription: Subscription;
-  dtTrigger: Subject<any> = new Subject<any>();
 
   constructor(private productService: ProductService) {
     this.subscription = this.productService.getAll().subscribe((products) => {
       this.products = products;
-      this.dtTrigger.next();
     });
   }
 

@@ -1,6 +1,6 @@
 import { AuthService } from '../../../shared/services/auth.service';
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 @Component({
@@ -14,10 +14,10 @@ export class LoginComponent {
     private router: Router,
     private route: ActivatedRoute
   ) {}
-  form = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', Validators.required),
-    remember: new FormControl(),
+  form = new UntypedFormGroup({
+    username: new UntypedFormControl('', [Validators.required, Validators.email]),
+    password: new UntypedFormControl('', Validators.required),
+    remember: new UntypedFormControl(),
   });
 
   get username() {
