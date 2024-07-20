@@ -1,12 +1,14 @@
-import { Product } from './../models/product';
-import { ShoppingCart } from 'src/app/shared/models/shopping-cart';
-import { Injectable } from '@angular/core';
 import {
   AngularFireDatabase,
   AngularFireObject,
 } from '@angular/fire/compat/database';
 import { map, mapTo, pluck, take } from 'rxjs/operators';
+
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Product } from './../models/product';
+import { ShoppingCart } from 'src/app/shared/models/shopping-cart';
+
 @Injectable()
 export class ShoppingCartService {
   quantity: number;
@@ -37,6 +39,7 @@ export class ShoppingCartService {
       cartId,
       product.$key
     ); //get iteRef to the product
+
     const item$: Observable<unknown> = itemRef.valueChanges(); // get observable of item
     item$.pipe(take(1)).subscribe((item) => {
       item === null
