@@ -1,18 +1,21 @@
-import { AppUser } from './../models/app-user';
-import { switchMap } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
-import firebase from 'firebase/compat/app';
-import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { UserService } from './user.service';
 import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
+  signInWithPopup,
   updateProfile,
 } from 'firebase/auth';
+
+import { ActivatedRoute } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { AppUser } from './../models/app-user';
+import { GoogleAuthProvider } from 'firebase/auth';
+import { Injectable } from '@angular/core';
+import { UserService } from './user.service';
+import firebase from 'firebase/compat/app';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
@@ -39,7 +42,6 @@ export class AuthService {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
         // ...
       })
       .catch((error) => {
@@ -47,6 +49,7 @@ export class AuthService {
         const errorMessage = error.message;
       });
   }
+
   signUp(name, username, password) {
     const auth = getAuth();
     const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'; // it copy the url on the address bar
@@ -73,11 +76,13 @@ export class AuthService {
         // ..
       });
   }
-  login() {
+  async login() {
+    const auth = getAuth();
+    await signInWithPopup(auth, new GoogleAuthProvider());
     const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'; // it copy the url on the address bar
     localStorage.setItem('returnUrl', returnUrl); // stores url in localstorage
 
-    this.afAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
+    // this.afAuth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
   }
 
   logout() {
